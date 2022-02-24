@@ -1,0 +1,40 @@
+<?php echo $this->getChildHtml('sticky.nav') ?>
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    $custom_block = Mage::getStoreConfig('porto_settings/header/static_block', $code);
+?>
+<div class="header-container type17">
+    <div class="header">
+        <?php if ($this->getIsHomePage()):?>
+        <h1 class="logo"><strong><?php echo $this->getLogoAlt(); ?></strong><a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo"><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a></h1>
+        <?php else:?>
+        <a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo"><strong><?php echo $this->getLogoAlt(); ?></strong><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a>
+        <?php endif; ?>
+        <?php echo $this->getChildHtml('topMenu') ?>
+        <div class="cart-area">
+            <div class="menu-icon"><a href="javascript:void(0)" title="<?php echo $this->__('Menu'); ?>"><i class="fa fa-bars"></i></a></div>
+            <div class="switcher-area">
+                <?php
+                    $store_currency = $this->getChildHtml('store_currency');
+                    $store_language = $this->getChildHtml('store_language');
+                ?>
+                <?php echo $store_currency; ?>
+                <?php echo $store_language; ?>
+            </div>
+            <div class="search-area">
+                <a href="javascript:void(0)" class="search-icon"><i class="fas fa-search"></i></a>
+                <?php echo $this->getChildHtml('topSearch'); ?>
+            </div>
+            <div class="top-links-area">
+                <div class="top-links-icon"><a href="javascript:void(0)"><i class="far fa-user"></i></a></div>
+                <?php echo $this->getChildHtml('topLinks'); ?>
+            </div>
+            <div class="wishlist-link">
+                <a href="<?php echo $this->getUrl('wishlist'); ?>" title="<?php echo $this->__('Wishlist'); ?>"><i class="far fa-heart"></i></a>
+            </div>
+            <?php echo $this->getChildHtml('minicart'); ?>
+        </div>
+    </div>
+</div>
+<?php echo $this->getChildHtml('mobile.nav') ?>

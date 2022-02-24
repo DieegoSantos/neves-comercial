@@ -1,0 +1,113 @@
+<?php echo $this->getChildHtml('sticky.nav') ?>
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    $custom_block = Mage::getStoreConfig('porto_settings/header/static_block', $code);
+?>
+<div class="header-container type26 header-newskin">
+    <div class="top-links-container">
+        <div class="top-links container">
+            <div class="top-links-inner">
+                <?php
+                $store_currency = $this->getChildHtml('store_currency');
+                $store_language = $this->getChildHtml('store_language');
+                ?>
+                <?php echo $store_currency; ?>
+                <?php if($store_currency && $store_language):?>
+                    <span class="split"></span>
+                <?php endif; ?>
+                <?php echo $store_language; ?>
+                <?php if($store_currency || $store_language):?>
+                    <span class="split"></span>
+                <?php endif; ?>
+                <?php
+                    $compare_link = $this->getChildHtml('compare_link');
+                ?>
+                <?php echo $compare_link; ?>
+                <div class="top-links-area">
+                    <div class="top-links-icon"><a href="javascript:void(0)"><?php echo $this->__("links"); ?></a></div>
+                    <?php echo $this->getChildHtml('topLinks'); ?>
+                </div>
+                <p class="welcome-msg"><?php echo $this->getChildHtml('welcome'); ?> <?php echo $this->getAdditionalHtml(); ?></p>
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="header container">
+        <div class="header-main-left">
+            <?php echo '<div class="custom-block">'.$this->getLayout()->createBlock('cms/block')->setBlockId($custom_block)->toHtml().'</div>'; ?>
+        </div>
+        <div class="header-main-center">
+            <div class="menu-icon"><a href="javascript:void(0)" title="<?php echo $this->__('Menu'); ?>"><i class="fa fa-bars"></i></a></div>
+            <?php if ($this->getIsHomePage()):?>
+            <h1 class="logo"><strong><?php echo $this->getLogoAlt(); ?></strong><a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo"><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a></h1>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo"><strong><?php echo $this->getLogoAlt(); ?></strong><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a>
+            <?php endif; ?>
+        </div>
+        <div class="header-main-right">
+            <?php
+                $custom_block_2 = Mage::getStoreConfig('porto_settings/header/static_block_26', $code);
+            ?>
+            <?php echo '<div class="custom-block">'.$this->getLayout()->createBlock('cms/block')->setBlockId($custom_block_2)->toHtml().'</div>'; ?>
+            <div class="search-area">
+                <a href="javascript:void(0);" class="search-icon"><i class="icon-magnifier"></i><span><?php echo $this->__('Search'); ?></a>
+            </div>
+            <div class="wishlist-link">
+                <a href="<?php echo $this->getUrl('wishlist'); ?>" title="<?php echo $this->__('Wishlist'); ?>"><i class="porto-new-icon-wishlist-2"></i></a>
+            </div>
+            <?php echo $this->getChildHtml('minicart'); ?>
+        </div>
+    </div>
+    <?php
+        $secondary_menu = Mage::getStoreConfig('porto_settings/header/secondary_menu_26', $code);
+        $menu_title = Mage::getStoreConfig('porto_settings/header/menu_title_2', $code);
+        $only_categories = $this->getOnlyCategories();
+    ?>
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="menu-wrapper">
+                <div class="dropdown-menu">
+                    <div class="menu-container">
+                        <a href="javascript:void(0)"><?php echo $menu_title; ?></a>
+                        <?php $menuHelper = Mage::helper('megamenu'); ?>
+                        <?php $menuData = $menuHelper->getMenuData(); extract($menuData); ?>
+                        <ul class="menu side-menu">
+                            <?php echo $menuHelper->getMenuContent($only_categories); ?>
+                        </ul>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            var SW_MENU_POPUP_WIDTH = <?php echo $_popupWidth; ?>;
+                            jQuery(function($){
+                                $('.menu.side-menu').et_menu({
+                                    type: "default"
+                                });
+                                $(document).ready(function(){
+                                    if($(window).width()<992)
+                                        $(".header-container.type26 .header-main-right .search-area a.search-icon").after($(".header-container.type26 .header-wrapper .search-area #search_mini_form").detach());
+                                    else
+                                        $(".header-container.type26 .header-wrapper .search-area a.search-icon").after($(".header-container.type26 .header-main-right .search-area #search_mini_form").detach());
+                                });
+                                $(window).resize(function(){
+                                    if($(window).width()<992)
+                                        $(".header-container.type26 .header-main-right .search-area a.search-icon").after($(".header-container.type26 .header-wrapper .search-area #search_mini_form").detach());
+                                    else
+                                        $(".header-container.type26 .header-wrapper .search-area a.search-icon").after($(".header-container.type26 .header-main-right .search-area #search_mini_form").detach());
+                                })
+                            });
+                            //]]>
+                        </script>
+                    </div>
+                </div>
+                <div class="custom-menu-block">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($secondary_menu)->toHtml(); ?>
+                </div>
+                <div class="search-area">
+                    <a href="javascript:void(0);" class="search-icon"><i class="icon-magnifier"></i><span><?php echo $this->__('Search'); ?></a>
+                    <?php echo $this->getChildHtml('topSearch'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo $this->getChildHtml('mobile.nav') ?>
