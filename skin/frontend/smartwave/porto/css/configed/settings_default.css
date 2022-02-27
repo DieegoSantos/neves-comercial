@@ -37,7 +37,7 @@ border-radius: 20px !important;
 .header-container.type3.header-newskin.sticky-header .main-nav ul.menu>li>a {color:#fff;}
 .header-container.type3.header-newskin.sticky-header .main-nav ul.menu>li.act>a,
 .header-container.type3.header-newskin.sticky-header .main-nav ul.menu>li:hover>a {
-    color: #bde1f5;
+    color: #000000;
 }
 .header-container.type3.header-newskin:not(.sticky-header) .mini-cart {
     position: relative;
@@ -46,7 +46,7 @@ border-radius: 20px !important;
     vertical-align: middle;
     left: 0;
     top: -3px;
-    background-color: #0694db;
+    background-color: #000000;
     width: 81px;
     height: 41px;
     text-align: center;
@@ -54,7 +54,7 @@ border-radius: 20px !important;
     border-radius: 2px;
     border: solid 1px #0082c2;
 }
-.header-container.type3.header-newskin .mybag-link .cart-qty {background-color: #f17734;}
+.header-container.type3.header-newskin .mybag-link .cart-qty {background-color: #db0c01;}
 .side-custom-menu {
     border-color:#dae2e6;
     border-radius:2px;
