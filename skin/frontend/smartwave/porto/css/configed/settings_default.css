@@ -104,7 +104,7 @@ border-radius: 20px !important;
     margin: 5px 2px 5px 2px;
 }
 .owl-theme .owl-controls .owl-page.active span,.owl-theme .owl-controls.clickable .owl-page:hover span{
-    border-color:#0088cc;
+    border-color:#000000;
     background: none;
 }
 .owl-theme .owl-controls .owl-page.active span:before,.owl-theme .owl-controls.clickable .owl-page:hover span:before {
